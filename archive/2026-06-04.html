@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vastgoed Nieuws Digest — 4 juni 2026</title>
+<style>
+  :root {
+    --primary: #1a2e44; --accent: #e07b39; --accent2: #2d7d9a;
+    --bg: #f4f6f9; --card-bg: #ffffff; --border: #dde3ec;
+    --text: #1f2937; --muted: #6b7280; --new: #f59e0b;
+    --transaction: #10b981; --rolechange: #8b5cf6; --sale: #ef4444; --buy: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
+  .site-header { background: var(--primary); color: #fff; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.2); }
+  .site-header h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+  .site-header .meta { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+  .header-right { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: rgba(255,255,255,0.8); }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .tab-bar { background: #fff; border-bottom: 2px solid var(--border); display: flex; gap: 0; padding: 0 24px; overflow-x: auto; position: sticky; top: 65px; z-index: 99; }
+  .tab-bar::-webkit-scrollbar { height: 3px; }
+  .tab-btn { padding: 12px 20px; border: none; background: none; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--muted); border-bottom: 3px solid transparent; white-space: nowrap; transition: all 0.15s; margin-bottom: -2px; }
+  .tab-btn:hover { color: var(--primary); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .layout { display: flex; gap: 0; min-height: calc(100vh - 65px); }
+  .sidebar { width: 280px; flex-shrink: 0; background: #fff; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 113px; height: calc(100vh - 113px); overflow-y: auto; }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .sidebar h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 10px; margin-top: 20px; }
+  .sidebar h3:first-child { margin-top: 0; }
+  .filter-search { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; color: var(--text); margin-bottom: 10px; outline: none; }
+  .filter-search:focus { border-color: var(--accent2); }
+  .filter-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 20px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-size: 12px; color: var(--text); margin: 3px 2px; transition: all 0.12s; white-space: nowrap; user-select: none; }
+  .filter-chip:hover { border-color: var(--accent2); color: var(--accent2); }
+  .filter-chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .filter-chip .count { font-size: 10px; background: rgba(0,0,0,0.15); padding: 1px 5px; border-radius: 10px; }
+  .filter-chip.active .count { background: rgba(255,255,255,0.25); }
+  .cat-chip { border-radius: 4px; }
+  .clear-btn { width: 100%; margin-top: 12px; padding: 8px; background: none; border: 1px dashed var(--border); border-radius: 6px; cursor: pointer; font-size: 12px; color: var(--muted); transition: all 0.12s; }
+  .clear-btn:hover { border-color: var(--sale); color: var(--sale); }
+  .content { flex: 1; padding: 24px; min-width: 0; max-width: 900px; }
+  .stats-bar { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; padding: 14px 16px; background: #fff; border-radius: 8px; border: 1px solid var(--border); }
+  .stat { display: flex; flex-direction: column; align-items: center; min-width: 70px; }
+  .stat .n { font-size: 22px; font-weight: 700; color: var(--primary); }
+  .stat .l { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .stat-divider { width: 1px; background: var(--border); }
+  .day-group { margin-bottom: 28px; }
+  .day-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+  .day-label { font-size: 15px; font-weight: 700; color: var(--primary); }
+  .day-count { font-size: 11px; background: var(--primary); color: #fff; padding: 2px 8px; border-radius: 12px; }
+  .day-new-badge { font-size: 10px; background: var(--new); color: #fff; padding: 2px 7px; border-radius: 10px; font-weight: 700; }
+  .article-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; transition: box-shadow 0.15s, transform 0.1s; position: relative; overflow: hidden; }
+  .article-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-1px); }
+  .article-card.is-new { border-left: 3px solid var(--new); }
+  .article-card.is-new::before { content: 'NIEUW'; position: absolute; top: 0; right: 0; background: var(--new); color: #fff; font-size: 9px; font-weight: 800; padding: 3px 7px; border-bottom-left-radius: 6px; letter-spacing: 0.5px; }
+  .card-header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .card-source { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 7px; border-radius: 3px; background: var(--bg); color: var(--muted); flex-shrink: 0; margin-top: 2px; }
+  .card-source.vastgoedjournaal { background: #1a2e44; color: #fff; }
+  .card-source.propertynl       { background: #c0392b; color: #fff; }
+  .card-source.nvm              { background: #2d7d9a; color: #fff; }
+  .card-source.vastgoeddata     { background: #27ae60; color: #fff; }
+  .card-source.vastgoedmarkt    { background: #8e44ad; color: #fff; }
+  .card-source.vastgoednieuws   { background: #d35400; color: #fff; }
+  .card-source.vastgoedactueel  { background: #16a085; color: #fff; }
+  .card-title { font-size: 14px; font-weight: 600; line-height: 1.4; color: var(--text); }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { color: var(--accent); text-decoration: underline; }
+  .card-summary { font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 10px; }
+  .card-footer { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .badge { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 12px; letter-spacing: 0.3px; }
+  .badge-transaction { background: #d1fae5; color: #065f46; }
+  .badge-sale        { background: #fee2e2; color: #7f1d1d; }
+  .badge-buy         { background: #dbeafe; color: #1e3a8a; }
+  .badge-rolechange  { background: #ede9fe; color: #4c1d95; }
+  .badge-market      { background: #e0f2fe; color: #0c4a6e; }
+  .tag { display: inline-flex; align-items: center; font-size: 11px; padding: 2px 8px; border-radius: 12px; cursor: pointer; transition: all 0.1s; user-select: none; }
+  .tag-company { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+  .tag-company:hover { background: #1d4ed8; color: #fff; }
+  .tag-cat { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+  .tag-cat:hover { background: #166534; color: #fff; }
+  .empty-state { text-align: center; padding: 48px 24px; color: var(--muted); }
+  .empty-state .icon { font-size: 40px; margin-bottom: 12px; }
+  .empty-state h3 { font-size: 16px; margin-bottom: 6px; }
+  .archive-banner { background: var(--primary); color: rgba(255,255,255,0.9); font-size: 12px; padding: 6px 24px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .archive-banner a { color: var(--new); text-decoration: none; }
+  .archive-banner a:hover { text-decoration: underline; }
+  .active-filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 10px 16px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; margin-bottom: 16px; }
+  .active-filters .label { font-size: 11px; font-weight: 700; color: #92400e; text-transform: uppercase; }
+  .active-filter-tag { background: var(--new); color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 12px; display: flex; align-items: center; gap: 4px; }
+  .active-filter-tag .remove { cursor: pointer; font-weight: 700; }
+  .cat-section { margin-bottom: 32px; }
+  .cat-section-title { font-size: 15px; font-weight: 700; color: var(--primary); padding: 10px 14px; background: #fff; border: 1px solid var(--border); border-radius: 8px 8px 0 0; border-bottom: 2px solid var(--accent); }
+  @media (max-width: 768px) { .sidebar { display: none; } .content { padding: 16px; } .tab-bar { top: 65px; } }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="archive-banner">
+  <span>&#128193;</span>
+  <span>Archief:</span>
+  <a href="archive/index.html">Alle edities</a>
+  <span>&middot;</span>
+  <a href="archive/2026-06-04.html">Deze editie (4 juni 2026)</a>
+  <span>&middot;</span>
+  <a href="archive/2026-06-03.html">Vorige editie (3 juni 2026)</a>
+</div>
+
+<header class="site-header">
+  <div>
+    <h1>&#127970; Vastgoed Nieuws Digest</h1>
+    <div class="meta">Donderdag 4 juni 2026 &nbsp;&middot;&nbsp; vastgoedjournaal.nl &nbsp;&middot;&nbsp; propertynl.com &nbsp;&middot;&nbsp; vastgoeddata.nl &nbsp;&middot;&nbsp; vastgoedmarkt.nl &nbsp;&middot;&nbsp; vastgoednieuws.nl &nbsp;&middot;&nbsp; vastgoedactueel.nl &nbsp;&middot;&nbsp; Laatste 7 dagen</div>
+  </div>
+  <div class="header-right">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--new)"></div>Nieuw</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--transaction)"></div>Transactie</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--rolechange)"></div>Functiewijziging</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--sale)"></div>Verkoop</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--buy)"></div>Aankoop</div>
+  </div>
+</header>
+
+<div class="tab-bar" role="tablist">
+  <button class="tab-btn active" data-tab="all"     onclick="switchTab('all')">Alle Artikelen</button>
+  <button class="tab-btn"        data-tab="cat"     onclick="switchTab('cat')">Per Categorie</button>
+  <button class="tab-btn"        data-tab="company" onclick="switchTab('company')">Per Bedrijf</button>
+  <button class="tab-btn"        data-tab="day"     onclick="switchTab('day')">Per Dag</button>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h3>Zoek bedrijf</h3>
+    <input type="text" class="filter-search" id="companySearch" placeholder="Typ bedrijfsnaam..." oninput="filterCompanySearch(this.value)">
+    <h3>Bedrijven</h3>
+    <div id="companyFilters"></div>
+    <h3>Categorieen</h3>
+    <div id="categoryFilters"></div>
+    <h3>Badges</h3>
+    <div id="badgeFilters">
+      <div class="filter-chip" data-badge="transaction" onclick="toggleBadge('transaction')">&#128176; Transactie</div>
+      <div class="filter-chip" data-badge="sale"        onclick="toggleBadge('sale')">&#128201; Verkoop</div>
+      <div class="filter-chip" data-badge="buy"         onclick="toggleBadge('buy')">&#128200; Aankoop</div>
+      <div class="filter-chip" data-badge="rolechange"  onclick="toggleBadge('rolechange')">&#128084; Functiewijziging</div>
+      <div class="filter-chip" data-badge="market"      onclick="toggleBadge('market')">&#128202; Marktnieuws</div>
+      <div class="filter-chip" data-badge="new"         onclick="toggleBadge('new')">&#127381; Nieuw vandaag</div>
+    </div>
+    <button class="clear-btn" onclick="clearAllFilters()">&times; Filters wissen</button>
+  </aside>
+
+  <main class="content">
+    <div class="stats-bar" id="statsBar">
+      <div class="stat"><div class="n" id="statTotal">0</div><div class="l">Artikelen</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="n" id="statNew">0</div><div class="l">Nieuw</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="n" id="statTrans">0</div><div class="l">Transacties</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="n" id="statRole">0</div><div class="l">Functiewijz.</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="n" id="statComp">0</div><div class="l">Bedrijven</div></div>
+    </div>
+    <div class="active-filters hidden" id="activeFiltersBar">
+      <span class="label">Filters:</span>
+      <div id="activeFilterTags"></div>
+    </div>
+    <div id="catTabView"     class="hidden"><div id="catTabFilters"     style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;"></div></div>
+    <div id="companyTabView" class="hidden"><div id="companyTabFilters" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;"></div></div>
+    <div id="articlesContainer"></div>
+    <div class="empty-state hidden" id="emptyState">
+      <div class="icon">&#128269;</div>
+      <h3>Geen artikelen gevonden</h3>
+      <p>Pas je filters aan om meer resultaten te zien.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+// ============================================================
+// DATA — venster 28 mei – 4 juni 2026
+// isNew = true  -> niet opgenomen in de digest van 3 juni 2026
+// ============================================================
+const ARTICLES = [
+
+  // 4 JUNI 2026
+  {
+    id: 27,
+    title: "DUWO investeerde in 2025 bijna 159,6 mln euro in studentenhuisvesting",
+    summary: "Uit het jaarverslag van DUWO blijkt dat de studentenhuisvester in 2025 in totaal 159,6 mln euro investeerde, waarvan 77% in nieuwbouw. Er werden 805 nieuwbouwwoningen opgeleverd en 404 bestaande woningen gerenoveerd of verbeterd. DUWO benadrukt de sterk groeiende vraag naar betaalbare studentenkamers in universiteitssteden. Het is daarmee een van de actiefste investeerders in Nederlandse studentenhuisvesting over 2025.",
+    date: "2026-06-04",
+    source: "vastgoedjournaal",
+    sourceLabel: "Vastgoedjournaal",
+    url: "https://vastgoedjournaal.nl/news/73206/duwo-investeerde-in-2025-bijna-160-miljoen-euro-in-studentenhuisvesting",
+    companies: ["DUWO"],
+    categories: ["Studentenhuisvesting", "Woningen", "Beleggingen"],
+    badges: ["market"],
+    isNew: true
+  },
+  {
+    id: 26,
+    title: "Investeringsvolume Nederlandse studentenwoningen flink gestegen in 2025",
+    summary: "In 2025 werd bijna 1 miljard euro geïnvesteerd in Nederlandse studentenwoningen — een record. Meer dan 400 mln euro was afkomstig van pensioenfondsen en verzekeraars. Partijen als Xior Student Housing en DUWO bleven actief met aan- en verkopen. De markt kent structureel te weinig aanbod tegenover de groeiende studentenpopulatie in Nederland.",
+    date: "2026-06-04",
+    source: "vastgoedjournaal",
+    sourceLabel: "Vastgoedjournaal",
+    url: "https://vastgoedjournaal.nl/news/73200/investeringsvolume-nederlandse-studentenwoningen-flink-gestegen",
+    companies: ["Xior Student Housing", "DUWO"],
+    categories: ["Studentenhuisvesting", "Beleggingen", "Marktoverzicht"],
+    badges: ["market"],
+    isNew: true
+  },
+
+  // 3 JUNI 2026
+  {
+    id: 25,
+    title: "'Het mes moet in de bouwbureaucratie': sector eist snellere procedures voor woningbouw",
+    summary: "Vastgoedprofessionals en bouwsectorfederaties herhalen hun oproep aan het kabinet om bouwbureaucratie drastisch te verminderen. VolkerWessels, Van Wijnen en Dura Vermeer pleiten voor wettelijke doorlooptijdnormen en digitalisering van vergunningstrajecten. CEO Harry van Zandwijk (Daiwa House Modular Europe) stelt dat de bouw van tienduizenden woningen onnodig vertraging oploopt door stapeling van procedures, bezwaren en onduidelijke bufferzones rondom landbouwgebieden.",
+    date: "2026-06-03",
+    source: "vastgoedjournaal",
+    sourceLabel: "Vastgoedjournaal",
+    url: "https://vastgoedjournaal.nl/news/73188/het-mes-moet-in-de-bouwbureaucratie",
+    companies: ["VolkerWessels", "Van Wijnen Groep", "Dura Vermeer"],
+    categories: ["Woningmarkt", "Beleid", "Nieuwbouw"],
+    badges: ["market"],
+    isNew: false
+  },
+  {
+    id: 24,
+    title: "Bestaande woningen steeds vaker geconfronteerd met netcongestie: wachttijden tot 3 jaar",
+    summary: "Netbeheerders waarschuwen dat niet alleen nieuwbouw maar ook bestaande woningen en bedrijven in toenemende mate te maken krijgen met wachttijden voor nieuwe of verzwaarde elektriciteitsaansluitingen. Stedin Netbeheer meldt in sommige regio's wachttijden van tot drie jaar voor kleinverbruikersaansluitingen. Dit heeft directe gevolgen voor verduurzamingsprojecten, laadinfrastructuur en de planning van vastgoedontwikkeling.",
+    date: "2026-06-03",
+    source: "vastgoedjournaal",
+    sourceLabel: "Vastgoedjournaal",
+    url: "https://vastgoedjournaal.nl/news/73187/bestaande-woningen-krijgen-ook-steeds-meer-last-van-netcongestie",
+    companies: ["Stedin Netbeheer"],
+    categories: ["Infrastructuur", "Duurzaamheid", "Woningmarkt"],
+    badges: ["market"],
+    isNew: false
+  },
+
+  // 2 JUNI 2026
+  {
+    id: 23,
+    title: "Hines huurt 600 m2 kantoorruimte bij Breevast aan Omval 300 in Amsterdam",
+    summary: "Hines heeft een vijfjarige huurovereenkomst gesloten voor de tweede verdieping (600 m2) van kantoorvilla Omval 300 in Amsterdam-Oost, eigendom van Breevast. Hines fungeert tevens als ontwikkelingsmanager voor de aangrenzende Toorop-locatie van Breevast - een grootschalig herontwikkelingsproject van 106.000 m2 met woningen, kantoren en voorzieningen. Met deze deal is Omval 300 (2.174 m2 verhuurbaar) volledig verhuurd.",
+    date: "2026-06-02",
+    source: "vastgoeddata",
+    sourceLabel: "Vastgoeddata",
+    url: "https://www.vastgoeddata.nl/article/22f0edd8-a418-11f0-b04f-464e1662e283/hines-huurt-600-m-bij-breevast-aan-omval-300-in-amsterdam",
+    companies: ["Breevast", "Hines"],
+    categories: ["Kantoren", "Huur", "Transacties"],
+    badges: ["transaction"],
+    isNew: false
+  },
+
+  // 1 JUNI 2026
+  {
+    id: 22,
+    title: "Mileway start herontwikkeling Westhavenweg 53-54 Amsterdam voor Nihot Recycling Technology",
+    summary: "Mileway, 's werelds grootste last-mile logistiek vastgoedbedrijf (onderdeel van Blackstone), start de herontwikkeling van Westhavenweg 53-54 in Amsterdam. Het bestaande gebouw wordt getransformeerd tot een modern bedrijfsgebouw van 8.700 m2 voor huurder Nihot Recycling Technology. Het project past in Mileway's strategie om haar Nederlandse portefeuille actief te herontwikkelen en te verduurzamen.",
+    date: "2026-06-01",
+    source: "vastgoeddata",
+    sourceLabel: "Vastgoeddata",
+    url: "https://www.vastgoeddata.nl/article/6dbf8253-b013-11f0-b04f-464e1662e283/mileway-start-herontwikkeling-voor-nihot-recycling-technology-in-amsterdam",
+    companies: ["Mileway", "Blackstone"],
+    categories: ["Logistiek", "Herontwikkeling", "Transacties"],
+    badges: ["transaction"],
+    isNew: false
+  },
+
+  // 31 MEI 2026
+  {
+    id: 21,
+    title: "NVM: Harde daling verhuurtransacties -- huuraanbod stortte 38% in door massaal uitponden",
+    summary: "De NVM rapporteert een alarmerende daling van 38% in het aantal vrije sectorverhuringen ten opzichte van een jaar eerder. In de middensector daalden verhuurtransacties in de vier grote steden met 50-70%. De oorzaak: beleggers verkopen op grote schaal voormalige huurwoningen (uitponden). In 2025 was een op de zes verkochte woningen een voormalige huurwoning. Makelaars waarschuwen voor een dreigend wooninfarct als het beleid niet wordt bijgestuurd.",
+    date: "2026-05-31",
+    source: "nvm",
+    sourceLabel: "NVM",
+    url: "https://www.nvm.nl/nieuws/2026/zorgen-over-harde-daling-verhuurtransacties-en-verdere-instorting-van-huuraanbod/",
+    companies: ["Nederlandse Vereniging van Makelaars en Taxateurs in onroerende goederen (NVM)"],
+    categories: ["Woningmarkt", "Huurmarkt", "Marktoverzicht"],
+    badges: ["market"],
+    isNew: false
+  },
+
+  // 30 MEI 2026
+  {
+    id: 20,
+    title: "ASR Dutch Prime Retail Fund verhuurt winkelruimte in De Passage Den Haag aan Doppelganger",
+    summary: "A.s.r. real estate heeft namens het ASR Dutch Prime Retail Fund een langjarige huurovereenkomst gesloten met het Italiaanse modebedrijf Doppelganger voor 240 m2 winkelruimte in De Passage in Den Haag. Dit is de eerste Nederlandse vestiging van Doppelganger. Opening verwacht eind juni 2026. De Passage is een historisch overdekt winkelcentrum in het centrum van Den Haag.",
+    date: "2026-05-30",
+    source: "vastgoedjournaal",
+    sourceLabel: "Vastgoedjournaal",
+    url: "https://vastgoedjournaal.nl/news/72848/doppelganger-opent-eerste-nederlandse-winkel-in-de-passage-in-den-haag",
+    companies: ["ASR Real Estate"],
+    categories: ["Retail", "Huur", "Transacties"],
+    badges: ["transaction"],
+    isNew: false
+  },
+  {
+    id: 19,
+    title: "Panattoni Income Fund haalt 600 mln euro op voor bestaand Europees logistiek vastgoed, ook in Nederland",
+    summary: "Panattoni, de grootste logistieke ontwikkelaar van Europa, streeft via het Panattoni Income Fund naar 300 mln euro equity en 600 mln euro aan acquisities van modern, duurzaam en pre-let logistiek vastgoed. Nederland is een kernmarkt. Panattoni is actief in Nederland since 2019 met projecten zoals Panattoni Park Twente (55.000 m2, Almelo) en Waalwijk. Het fonds richt zich op BREEAM-gecertificeerde last-mile en cross-dock faciliteiten met stabiele lange termijn huurinkomsten.",
+    date: "2026-05-30",
+    source: "vastgoeddata",
+    sourceLabel: "Vastgoeddata",
+    url: "https://www.vastgoeddata.nl/article/f54b75a8-24d9-11f0-8f96-464e1662e283/panattoni-groeit-door-logistiek-vastgoed-met-duurzame-slagkracht",
+    companies: ["Panattoni"],
+    categories: ["Logistiek", "Beleggingen", "Duurzaamheid"],
+    badges: ["market"],
+    isNew: false
+  },
+
+  // 29 MEI 2026
+  {
+    id: 18,
+    title: "Decathlon vestigt zich in Vier Meren Hoofddorp -- Wereldhave rondt Full Service Center af",
+    summary: "Wereldhave heeft een huurovereenkomst gesloten met sportketen Decathlon voor een unit van 1.600 m2 op de eerste verdieping van winkelcentrum Vier Meren in Hoofddorp. Opening verwacht augustus 2026. Hiermee voltooit Wereldhave de transformatie naar een Full Service Center met sport, gezondheid, dagelijkse boodschappen en persoonlijke diensten. Niels Keulen (Head of Leasing Wereldhave): 'Met Decathlon vullen we het laatste ontbrekende segment in.'",
+    date: "2026-05-29",
+    source: "vastgoedjournaal",
+    sourceLabel: "Vastgoedjournaal",
+    url: "https://vastgoedjournaal.nl/news/72899/decathlon-naar-vier-meren-in-hoofddorp",
+    companies: ["Wereldhave"],
+    categories: ["Retail", "Huur", "Transacties"],
+    badges: ["transaction"],
+    isNew: false
+  },
+  {
+    id: 17,
+    title: "Sectie5 breidt woningportefeuille uit met aankoop van 47 appartementen",
+    summary: "Sectie5 heeft namens een van haar woningfondsen een appartementencomplex van 47 eenheden aangekocht. De aankoop sluit aan op de groeistrategie van Sectie5 om de beheerde woningportefeuille uit te breiden met kwalitatieve middenhuur en vrije sector. Sectie5 beheert meerdere NL Woningfondsen gericht op institutionele beleggers en is actief in onder andere Rotterdam, Amsterdam en Den Haag.",
+    date: "2026-05-29",
+    source: "vastgoeddata",
+    sourceLabel: "Vastgoeddata",
+    url: "https://www.vastgoeddata.nl/article/b8c4b16b-2e65-11f1-b96f-464e1662e283/sectie5-breidt-woningportefeuille-uit-met-aankoop-van-47-appartementen",
+    companies: ["Sectie 5"],
+    categories: ["Woningen", "Beleggingen", "Transacties"],
+    badges: ["transaction", "buy"],
+    isNew: false
+  },
+
+  // 28 MEI 2026
+  {
+    id: 16,
+    title: "Woningbeleggingen Q1 2026 stijgen met 75% -- aandeel corporaties krimpt naar recordlaag",
+    summary: "In het eerste kwartaal van 2026 werd 2,1 miljard euro geïnvesteerd in woningen, het hoogste transactievolume since 2020 (+75% j-o-j). Institutionele beleggers domineerden; het aandeel van woningcorporaties kromp tot een recordlaag. NN Group (via Vesteda) en Amvest behoren tot de meest actieve partijen. De stijging wordt mede gedreven door aantrekkend beleggerssentiment en dalende herfinancieringsrentes.",
+    date: "2026-05-28",
+    source: "vastgoedjournaal",
+    sourceLabel: "Vastgoedjournaal",
+    url: "https://vastgoedjournaal.nl/news/73112/woningbeleggingen-q1-2026-stijgen-met-75-aandeel-corporaties-krimpt",
+    companies: ["NN Group", "Amvest"],
+    categories: ["Woningmarkt", "Beleggingen", "Marktoverzicht"],
+    badges: ["market"],
+    isNew: false
+  }
+];
+
+let activeCompanies  = new Set();
+let activeCategories = new Set();
+let activeBadges     = new Set();
+let currentTab       = 'all';
+
+function formatDate(d) {
+  const days   = ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'];
+  const months = ['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+  const dt = new Date(d + 'T00:00:00');
+  return days[dt.getDay()] + ' ' + dt.getDate() + ' ' + months[dt.getMonth()] + ' ' + dt.getFullYear();
+}
+function getUniqueCompanies() {
+  const c = {};
+  ARTICLES.forEach(a => a.companies.forEach(co => { c[co] = (c[co]||0)+1; }));
+  return Object.entries(c).sort((a,b) => b[1]-a[1]||a[0].localeCompare(b[0]));
+}
+function getUniqueCategories() {
+  const c = {};
+  ARTICLES.forEach(a => a.categories.forEach(cat => { c[cat] = (c[cat]||0)+1; }));
+  return Object.entries(c).sort((a,b) => b[1]-a[1]||a[0].localeCompare(b[0]));
+}
+function filteredArticles() {
+  return ARTICLES.filter(a => {
+    if (activeCompanies.size  && !a.companies.some(c  => activeCompanies.has(c)))  return false;
+    if (activeCategories.size && !a.categories.some(c => activeCategories.has(c))) return false;
+    if (activeBadges.size) {
+      if (activeBadges.has('new') && !a.isNew) return false;
+      const ob = new Set([...activeBadges].filter(x => x !== 'new'));
+      if (ob.size && !a.badges.some(b => ob.has(b))) return false;
+    }
+    return true;
+  });
+}
+function groupByDate(articles) {
+  const g = {};
+  articles.forEach(a => { (g[a.date]||(g[a.date]=[])).push(a); });
+  return Object.entries(g).sort((a,b) => b[0].localeCompare(a[0]));
+}
+function groupByCategory(articles) {
+  const g = {};
+  articles.forEach(a => a.categories.forEach(cat => {
+    if (!g[cat]) g[cat] = [];
+    if (!g[cat].find(x => x.id===a.id)) g[cat].push(a);
+  }));
+  return Object.entries(g).sort((a,b) => b[1].length-a[1].length||a[0].localeCompare(b[0]));
+}
+function groupByCompany(articles) {
+  const g = {};
+  articles.forEach(a => a.companies.forEach(co => {
+    if (!g[co]) g[co] = [];
+    if (!g[co].find(x => x.id===a.id)) g[co].push(a);
+  }));
+  return Object.entries(g).sort((a,b) => b[1].length-a[1].length||a[0].localeCompare(b[0]));
+}
+function renderBadge(b) {
+  const map = { transaction:['💰','badge-transaction','Transactie'], sale:['🏷️','badge-sale','Verkoop'], buy:['🛒','badge-buy','Aankoop'], rolechange:['👔','badge-rolechange','Functiewijziging'], market:['📊','badge-market','Marktnieuws'] };
+  if (!map[b]) return '';
+  return '<span class="badge '+map[b][1]+'">'+map[b][0]+' '+map[b][2]+'</span>';
+}
+function esc(s) { return s.replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
+function renderCard(a) {
+  const nc = a.isNew ? ' is-new' : '';
+  const badges = a.badges.map(renderBadge).join('');
+  const cos = a.companies.map(c => '<span class="tag tag-company" onclick="quickFilterCompany(\''+esc(c)+'\',event)">'+c+'</span>').join('');
+  const cats = a.categories.map(c => '<span class="tag tag-cat" onclick="quickFilterCat(\''+c+'\',event)">'+c+'</span>').join('');
+  const srcMap = {vastgoedjournaal:'vastgoedjournaal',propertynl:'propertynl',nvm:'nvm',vastgoeddata:'vastgoeddata',vastgoedmarkt:'vastgoedmarkt',vastgoednieuws:'vastgoednieuws',vastgoedactueel:'vastgoedactueel'};
+  return '<div class="article-card'+nc+'" data-id="'+a.id+'"><div class="card-header"><span class="card-source '+(srcMap[a.source]||'')+'">'+a.sourceLabel+'</span><div class="card-title"><a href="'+a.url+'" target="_blank" rel="noopener">'+a.title+'</a></div></div><p class="card-summary">'+a.summary+'</p><div class="card-footer">'+badges+cos+cats+'</div></div>';
+}
+function renderDayGroup(date, arts) {
+  const nc = arts.filter(a => a.isNew).length;
+  const nb = nc ? '<span class="day-new-badge">'+nc+' nieuw</span>' : '';
+  return '<div class="day-group" data-date="'+date+'"><div class="day-header"><span class="day-label">'+formatDate(date)+'</span><span class="day-count">'+arts.length+'</span>'+nb+'</div>'+arts.map(renderCard).join('')+'</div>';
+}
+function renderArticles() {
+  const arts = filteredArticles();
+  const c = document.getElementById('articlesContainer');
+  const e = document.getElementById('emptyState');
+  if (!arts.length) { c.innerHTML=''; e.classList.remove('hidden'); updateStats([]); updateActiveFiltersBar(); return; }
+  e.classList.add('hidden');
+  if (currentTab==='cat') {
+    c.innerHTML = groupByCategory(arts).map(([cat,a]) => '<div class="cat-section"><div class="cat-section-title">📂 '+cat+' <span style="font-size:12px;font-weight:400;color:#6b7280;">('+a.length+')</span></div>'+a.map(renderCard).join('')+'</div>').join('');
+  } else if (currentTab==='company') {
+    const byCo = groupByCompany(arts);
+    const shown = activeCompanies.size ? byCo.filter(([co]) => activeCompanies.has(co)) : byCo;
+    c.innerHTML = shown.map(([co,a]) => '<div class="cat-section"><div class="cat-section-title">🏢 '+co+' <span style="font-size:12px;font-weight:400;color:#6b7280;">('+a.length+')</span></div>'+a.map(renderCard).join('')+'</div>').join('');
+  } else {
+    c.innerHTML = groupByDate(arts).map(([d,a]) => renderDayGroup(d,a)).join('');
+  }
+  updateStats(arts); updateActiveFiltersBar();
+}
+function updateStats(arts) {
+  const u = arts.reduce((s,a) => { a.companies.forEach(c => s.add(c)); return s; }, new Set());
+  document.getElementById('statTotal').textContent = arts.length;
+  document.getElementById('statNew').textContent   = arts.filter(a => a.isNew).length;
+  document.getElementById('statTrans').textContent  = arts.filter(a => a.badges.some(b => ['transaction','sale','buy'].includes(b))).length;
+  document.getElementById('statRole').textContent   = arts.filter(a => a.badges.includes('rolechange')).length;
+  document.getElementById('statComp').textContent   = u.size;
+}
+function updateActiveFiltersBar() {
+  const bar  = document.getElementById('activeFiltersBar');
+  const tags = document.getElementById('activeFilterTags');
+  const all  = [...activeCompanies].map(c => ({type:'company',val:c})).concat([...activeCategories].map(c => ({type:'cat',val:c}))).concat([...activeBadges].map(c => ({type:'badge',val:c})));
+  if (!all.length) { bar.classList.add('hidden'); return; }
+  bar.classList.remove('hidden');
+  tags.innerHTML = all.map(f => '<span class="active-filter-tag">'+f.val+'<span class="remove" onclick="removeFilter(\''+f.type+'\',\''+esc(f.val)+'\')"> &times;</span></span>').join('');
+}
+function removeFilter(type, val) {
+  if (type==='company') activeCompanies.delete(val);
+  if (type==='cat')     activeCategories.delete(val);
+  if (type==='badge')   activeBadges.delete(val);
+  syncChips(); renderArticles();
+}
+function buildSidebar() {
+  document.getElementById('companyFilters').innerHTML = getUniqueCompanies().map(([co,n]) => '<div class="filter-chip" data-company="'+co.replace(/"/g,'&quot;')+'" onclick="toggleCompany(\''+esc(co)+'\')">'+co+'<span class="count">'+n+'</span></div>').join('');
+  document.getElementById('categoryFilters').innerHTML = getUniqueCategories().map(([cat,n]) => '<div class="filter-chip cat-chip" data-cat="'+cat+'" onclick="toggleCategory(\''+cat+'\')">'+cat+'<span class="count">'+n+'</span></div>').join('');
+}
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab===tab));
+  document.getElementById('catTabView').classList.toggle('hidden',     tab!=='cat');
+  document.getElementById('companyTabView').classList.toggle('hidden', tab!=='company');
+  if (tab==='cat') document.getElementById('catTabFilters').innerHTML = getUniqueCategories().map(([cat,n]) => '<button class="filter-chip cat-chip'+(activeCategories.has(cat)?' active':'')+'" onclick="toggleCategory(\''+cat+'\')">'+cat+' <span class="count">'+n+'</span></button>').join('');
+  if (tab==='company') document.getElementById('companyTabFilters').innerHTML = getUniqueCompanies().map(([co,n]) => '<button class="filter-chip'+(activeCompanies.has(co)?' active':'')+'" onclick="toggleCompany(\''+esc(co)+'\')">'+co+' <span class="count">'+n+'</span></button>').join('');
+  renderArticles();
+}
+function toggleCompany(co)  { activeCompanies.has(co)  ? activeCompanies.delete(co)  : activeCompanies.add(co);  syncChips(); renderArticles(); }
+function toggleCategory(cat){ activeCategories.has(cat)? activeCategories.delete(cat): activeCategories.add(cat); syncChips(); renderArticles(); }
+function toggleBadge(b)     { activeBadges.has(b)      ? activeBadges.delete(b)      : activeBadges.add(b);      syncChips(); renderArticles(); }
+function quickFilterCompany(co, e)  { e.stopPropagation(); activeCompanies.clear();  activeCompanies.add(co);  syncChips(); renderArticles(); }
+function quickFilterCat(cat, e)     { e.stopPropagation(); activeCategories.clear(); activeCategories.add(cat); syncChips(); renderArticles(); }
+function clearAllFilters() { activeCompanies.clear(); activeCategories.clear(); activeBadges.clear(); document.getElementById('companySearch').value=''; filterCompanySearch(''); syncChips(); renderArticles(); }
+function syncChips() {
+  document.querySelectorAll('[data-company]').forEach(el => el.classList.toggle('active', activeCompanies.has(el.dataset.company)));
+  document.querySelectorAll('[data-cat]').forEach(el     => el.classList.toggle('active', activeCategories.has(el.dataset.cat)));
+  document.querySelectorAll('[data-badge]').forEach(el   => el.classList.toggle('active', activeBadges.has(el.dataset.badge)));
+}
+function filterCompanySearch(q) {
+  const lq = q.toLowerCase();
+  document.querySelectorAll('#companyFilters .filter-chip').forEach(el => { el.style.display = (el.dataset.company||'').toLowerCase().includes(lq) ? '' : 'none'; });
+}
+buildSidebar();
+renderArticles();
+</script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vastgoed Nieuws Digest — 28 mei 2026</title>
+<title>Vastgoed Nieuws Digest — 30 mei 2026</title>
 <style>
   :root {
     --primary: #1a2e44;
@@ -290,20 +290,20 @@
 
 <!-- ARCHIVE BANNER -->
 <div class="archive-banner">
-  <span>📁</span>
+  <span>&#128193;</span>
   <span>Archief:</span>
   <a href="archive/index.html">Alle edities</a>
-  <span>·</span>
-  <a href="archive/2026-05-28.html">Deze editie (28 mei 2026)</a>
-  <span>·</span>
-  <a href="archive/2026-05-26.html">Vorige editie (26 mei 2026)</a>
+  <span>&middot;</span>
+  <a href="archive/2026-05-30.html">Deze editie (30 mei 2026)</a>
+  <span>&middot;</span>
+  <a href="archive/2026-05-28.html">Vorige editie (28 mei 2026)</a>
 </div>
 
 <!-- HEADER -->
 <header class="site-header">
   <div>
-    <h1>🏢 Vastgoed Nieuws Digest</h1>
-    <div class="meta">Donderdag 28 mei 2026 &nbsp;·&nbsp; vastgoedjournaal.nl &nbsp;·&nbsp; propertynl.com &nbsp;·&nbsp; vastgoeddata.nl &nbsp;·&nbsp; vastgoedmarkt.nl &nbsp;·&nbsp; vastgoednieuws.nl &nbsp;·&nbsp; vastgoedactueel.nl &nbsp;·&nbsp; Laatste 7 dagen</div>
+    <h1>&#127970; Vastgoed Nieuws Digest</h1>
+    <div class="meta">Zaterdag 30 mei 2026 &nbsp;&middot;&nbsp; vastgoedjournaal.nl &nbsp;&middot;&nbsp; propertynl.com &nbsp;&middot;&nbsp; vastgoeddata.nl &nbsp;&middot;&nbsp; vastgoedmarkt.nl &nbsp;&middot;&nbsp; vastgoednieuws.nl &nbsp;&middot;&nbsp; vastgoedactueel.nl &nbsp;&middot;&nbsp; Laatste 7 dagen</div>
   </div>
   <div class="header-right">
     <div class="legend-item"><div class="legend-dot" style="background:var(--new)"></div>Nieuw</div>
@@ -328,25 +328,25 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <h3>Zoek bedrijf</h3>
-    <input type="text" class="filter-search" id="companySearch" placeholder="Typ bedrijfsnaam…" oninput="filterCompanySearch(this.value)">
+    <input type="text" class="filter-search" id="companySearch" placeholder="Typ bedrijfsnaam&hellip;" oninput="filterCompanySearch(this.value)">
 
     <h3>Bedrijven</h3>
     <div id="companyFilters"></div>
 
-    <h3>Categorieën</h3>
+    <h3>Categorie&euml;n</h3>
     <div id="categoryFilters"></div>
 
     <h3>Badges</h3>
     <div id="badgeFilters">
-      <div class="filter-chip" data-badge="transaction" onclick="toggleBadge('transaction')">💰 Transactie</div>
-      <div class="filter-chip" data-badge="sale"        onclick="toggleBadge('sale')">📉 Verkoop</div>
-      <div class="filter-chip" data-badge="buy"         onclick="toggleBadge('buy')">📈 Aankoop</div>
-      <div class="filter-chip" data-badge="rolechange"  onclick="toggleBadge('rolechange')">👔 Functiewijziging</div>
-      <div class="filter-chip" data-badge="market"      onclick="toggleBadge('market')">📊 Marktnieuws</div>
-      <div class="filter-chip" data-badge="new"         onclick="toggleBadge('new')">🆕 Nieuw vandaag</div>
+      <div class="filter-chip" data-badge="transaction" onclick="toggleBadge('transaction')">&#128176; Transactie</div>
+      <div class="filter-chip" data-badge="sale"        onclick="toggleBadge('sale')">&#128197; Verkoop</div>
+      <div class="filter-chip" data-badge="buy"         onclick="toggleBadge('buy')">&#128200; Aankoop</div>
+      <div class="filter-chip" data-badge="rolechange"  onclick="toggleBadge('rolechange')">&#128084; Functiewijziging</div>
+      <div class="filter-chip" data-badge="market"      onclick="toggleBadge('market')">&#128202; Marktnieuws</div>
+      <div class="filter-chip" data-badge="new"         onclick="toggleBadge('new')">&#127381; Nieuw vandaag</div>
     </div>
 
-    <button class="clear-btn" onclick="clearAllFilters()">✕ Filters wissen</button>
+    <button class="clear-btn" onclick="clearAllFilters()">&times; Filters wissen</button>
   </aside>
 
   <!-- CONTENT -->
@@ -375,7 +375,7 @@
     <div id="articlesContainer"></div>
 
     <div class="empty-state hidden" id="emptyState">
-      <div class="icon">🔍</div>
+      <div class="icon">&#128269;</div>
       <h3>Geen artikelen gevonden</h3>
       <p>Pas je filters aan om meer resultaten te zien.</p>
     </div>
@@ -385,11 +385,79 @@
 
 <script>
 // ============================================================
-// DATA — venster 22–28 mei 2026
-// isNew = true  → niet opgenomen in de digest van 26 mei
+// DATA — venster 24–30 mei 2026
+// isNew = true  → niet opgenomen in de digest van 28 mei
 // ============================================================
 const ARTICLES = [
-  // ── 28 MEI 2026 ─────────────────────────────────────────
+  // ── 30 MEI 2026 ─────────────────────────────────────────
+  {
+    id: 19,
+    title: "Breevast koopt Duitse woningportefeuille met ruim 1.900 woningen",
+    summary: "Breevast heeft een portefeuille van circa 1.920 bestaande woningen in Duitsland verworven, aangevuld met commerciële ruimten, parkeerplaatsen en overige eenheden. Het is een van de grootste buitenlandse investeringen van de Amsterdamse ontwikkelaar en belegger. Breevast is eerder actief geweest bij prominente projecten als Hoog Catharijne in Utrecht en de Financietoren in Brussel.",
+    date: "2026-05-30",
+    source: "vastgoedjournaal",
+    sourceLabel: "Vastgoedjournaal",
+    url: "https://vastgoedjournaal.nl/news/73134/breevast-koopt-duitse-woningportefeuille-met-ruim-1-900-woningen",
+    companies: ["Breevast"],
+    categories: ["Woningen", "Transacties", "Internationaal"],
+    badges: ["transaction", "buy"],
+    isNew: true
+  },
+  // ── 29 MEI 2026 ─────────────────────────────────────────
+  {
+    id: 18,
+    title: "Gemeente Groningen selecteert BPD voor realisatie Spoorkwartier",
+    summary: "De gemeente Groningen heeft BPD Ontwikkeling aangewezen als gebiedsontwikkelaar voor het Spoorkwartier, het braakliggende terrein ten zuiden van het hoofdstation. BPD start samen met woningcorporatie Patrimonium een haalbaarheidsstudie. Het plangebied biedt ruimte voor een breed woningprogramma, kantoren, voorzieningen en een actief begane-grondprogramma, verdeeld over vier kwadranten nabij Parkweg.",
+    date: "2026-05-29",
+    source: "vastgoedjournaal",
+    sourceLabel: "Vastgoedjournaal",
+    url: "https://vastgoedjournaal.nl/news/73128/bpd-geselecteerd-voor-ontwikkeling-spoorkwartier-groningen",
+    companies: ["BPD Ontwikkeling"],
+    categories: ["Gebiedsontwikkeling", "Woningen", "Nieuwbouw"],
+    badges: ["market"],
+    isNew: true
+  },
+  {
+    id: 20,
+    title: "ASR Real Estate sluit huurovereenkomst met New Balance aan Lijnbaan Rotterdam",
+    summary: "a.s.r. real estate heeft een huurovereenkomst gesloten met internationaal sport- en lifestylemerk New Balance voor 850 m² retailruimte aan de Lijnbaan 171 in Rotterdam. De opening is voorzien in het tweede kwartaal van 2026. De deal versterkt de positie van het Lijnbaan-gebied als toonaangevend winkelgebied in de Maasstad.",
+    date: "2026-05-29",
+    source: "propertynl",
+    sourceLabel: "PropertyNL",
+    url: "https://propertynl.com/Nieuws/Categorie/Transacties/15",
+    companies: ["ASR Real Estate"],
+    categories: ["Retail", "Huur"],
+    badges: ["transaction"],
+    isNew: true
+  },
+  // ── 28 MEI 2026 (nieuw t.o.v. vorige editie) ─────────────
+  {
+    id: 21,
+    title: "Pensioenfonds ABP verhoogt allocatie vastgoed; investeert €350 mln in seniorenwoningen",
+    summary: "Pensioenfonds ABP verhoogt de allocatie naar vastgoed en investeert via CBRE Investment Management €350 miljoen in nieuwe seniorenwoningen in Nederland. Ondanks een licht gedaalde dekkingsgraad in Q1 2026 ziet ABP stabiele cashflows en huurgroei als redenen om de vastgoedportefeuille verder uit te bouwen.",
+    date: "2026-05-28",
+    source: "propertynl",
+    sourceLabel: "PropertyNL",
+    url: "https://propertynl.com/Nieuws/ABP-ziet-dekkingsgraad-dalen-maar-plust-op-vastgoed/8ab84b87-aed7-479c-b800-0145872d1ded",
+    companies: ["Pensioenfonds ABP"],
+    categories: ["Beleggingen", "Woningen", "Marktoverzicht"],
+    badges: ["market"],
+    isNew: true
+  },
+  {
+    id: 22,
+    title: "Moore DRV huurt voormalig Rabobank-kantoor in De Lier",
+    summary: "Het voormalige Rabobank-kantoor aan Leehove 65 in De Lier is overgenomen door Oval Real Estate, een consortium van lokale ondernemers, dat het gebouw langjarig verhuurt aan accountants- en advieskantoor Moore DRV. De formele eigendomsoverdracht staat gepland voor begin september 2026. De transactie illustreert de actieve herpositionering van vrijgekomen bankpanden in kleinere gemeenten.",
+    date: "2026-05-28",
+    source: "vastgoeddata",
+    sourceLabel: "Vastgoeddata",
+    url: "https://www.vastgoeddata.nl/article/c77ffcdc-55d8-11f1-b96f-464e1662e283/moore-drv-huurt-voormalig-rabobank-kantoor-in-de-lier",
+    companies: ["Rabobank"],
+    categories: ["Kantoren", "Transacties"],
+    badges: ["transaction", "sale"],
+    isNew: true
+  },
+  // ── 28 MEI 2026 (uit vorige editie) ─────────────────────
   {
     id: 16,
     title: "Woningbeleggingen Q1 2026 stijgen met 75% — aandeel corporaties krimpt naar recordlaag",
@@ -401,9 +469,36 @@ const ARTICLES = [
     companies: ["NN Group", "Amvest"],
     categories: ["Woningmarkt", "Beleggingen", "Marktoverzicht"],
     badges: ["market"],
+    isNew: false
+  },
+  // ── 27 MEI 2026 (nieuw t.o.v. vorige editie) ─────────────
+  {
+    id: 23,
+    title: "Heroyam huurt kantoorruimte in Zwolle van KondorWessels Projecten",
+    summary: "Internationaal zakelijk dienstverlener Heroyam heeft kantoorruimte gehuurd in een Zwols kantoorgebouw van KondorWessels Projecten. De deal maakt deel uit van de actieve verhuurmarkt in Overijssel, die in mei 2026 meer dynamiek laat zien dan de beleggingsmarkt. KondorWessels Projecten maakt deel uit van VolkerWessels.",
+    date: "2026-05-27",
+    source: "vastgoedjournaal",
+    sourceLabel: "Vastgoedjournaal",
+    url: "https://vastgoedjournaal.nl/news/tag/KondorWessels",
+    companies: ["Kondor Wessels Groep"],
+    categories: ["Kantoren", "Huur"],
+    badges: ["transaction"],
     isNew: true
   },
-  // ── 27 MEI 2026 ─────────────────────────────────────────
+  {
+    id: 24,
+    title: "Next Level verhuurt 6.000 m² aan Locus Robotics op Logistics Campus Aalsmeer",
+    summary: "Locus Robotics, gespecialiseerd in robotautomatisering voor e-commerce fulfillment, heeft een huurovereenkomst getekend voor meer dan 6.000 m² op Logistics Campus Aalsmeer, ontwikkeld door Next Level Development. Het bedrijf breidt hiermee zijn Europese activiteiten aanzienlijk uit vanuit de Amsterdamse regio.",
+    date: "2026-05-27",
+    source: "propertynl",
+    sourceLabel: "PropertyNL",
+    url: "https://propertynl.com/Nieuws/Categorie/Transacties/15",
+    companies: ["Next Level"],
+    categories: ["Logistiek", "Huur"],
+    badges: ["transaction"],
+    isNew: true
+  },
+  // ── 27 MEI 2026 (uit vorige editie) ─────────────────────
   {
     id: 15,
     title: "Wereldhave sluit overeenkomsten met terStal en Medi-Market in Stadshart Zoetermeer",
@@ -415,7 +510,7 @@ const ARTICLES = [
     companies: ["Wereldhave"],
     categories: ["Retail", "Huur"],
     badges: ["transaction"],
-    isNew: true
+    isNew: false
   },
   {
     id: 14,
@@ -428,7 +523,7 @@ const ARTICLES = [
     companies: ["Sectie 5"],
     categories: ["Personeel", "Bedrijfsnieuws"],
     badges: ["rolechange"],
-    isNew: true
+    isNew: false
   },
   {
     id: 13,
@@ -441,35 +536,23 @@ const ARTICLES = [
     companies: ["Sectie 5", "Amvest"],
     categories: ["Woningen", "Transacties"],
     badges: ["transaction", "buy", "sale"],
-    isNew: true
+    isNew: false
   },
+  // ── 26 MEI 2026 (nieuw t.o.v. vorige editie) ─────────────
   {
     id: 17,
-    title: "BPD geselecteerd als ontwikkelpartner voor Spoorkwartier Groningen — start haalbaarheidsonderzoek",
-    summary: "De gemeente Groningen heeft BPD (Bouwfonds Gebiedsontwikkeling) geselecteerd als ontwikkelpartner voor het Spoorkwartier, het braakliggende gebied direct ten zuiden van het hoofdstation. Gemeente, woningstichting Patrimonium en BPD starten een haalbaarheidsonderzoek voor kwadranten 3 en 4. Het gebied biedt ruimte aan woningen, kantoren en voorzieningen. Bouw verwacht te starten in 2027–2028.",
-    date: "2026-05-27",
+    title: "Dura Vermeer geselecteerd door NSI voor herontwikkeling Noon op Parnassusweg Amsterdam",
+    summary: "NSI heeft Dura Vermeer geselecteerd als aannemer voor de herontwikkeling van Noon op de Parnassusweg in Amsterdam. Het voormalige Vitrum-gebouw wordt omgebouwd tot een modern kantoorgebouw van circa 14.270 m² op de rand van de Zuidas. Bouwstart is op korte termijn voorzien. NSI is als eigenaar en opdrachtgever nauw betrokken bij het ontwerp en de duurzaamheidsambities van het project.",
+    date: "2026-05-26",
     source: "vastgoedjournaal",
     sourceLabel: "Vastgoedjournaal",
-    url: "https://vastgoedjournaal.nl/news/73128/bpd-geselecteerd-voor-ontwikkeling-spoorkwartier-groningen",
-    companies: ["BPD Ontwikkeling", "Gemeente Groningen"],
-    categories: ["Gebiedsontwikkeling", "Woningontwikkeling"],
-    badges: ["market"],
+    url: "https://vastgoedjournaal.nl/news/73099/dura-vermeer-geselecteerd-voor-herontwikkeling-noon-in-amsterdam",
+    companies: ["Dura Vermeer", "NSI"],
+    categories: ["Kantoren", "Ontwikkeling", "Transacties"],
+    badges: ["transaction"],
     isNew: true
   },
-  {
-    id: 18,
-    title: "Union Investment: Europa blijft sterkste retailregio ter wereld ondanks geopolitieke onzekerheid",
-    summary: "Volgens de Global Retail Attractiveness Index (GRAI) van Union Investment en NIQ-GfK blijft Europa de sterkste retailregio ter wereld. Ondanks groeiende geopolitieke en economische onzekerheid en prijsdruk blijven Europese winkelstraten aantrekkelijk voor retailers en investeerders. Schaarste aan goede retaillocaties en aanhoudende vraag stuwen de huurprijzen in prime-locaties.",
-    date: "2026-05-27",
-    source: "propertynl",
-    sourceLabel: "PropertyNL",
-    url: "https://propertynl.com/Nieuws/Categorie/Nieuws/14",
-    companies: ["Union Investment"],
-    categories: ["Retail", "Marktoverzicht"],
-    badges: ["market"],
-    isNew: true
-  },
-  // ── 26 MEI 2026 ─────────────────────────────────────────
+  // ── 26 MEI 2026 (uit vorige editie) ─────────────────────
   {
     id: 12,
     title: "NSI CEO Bernd Stahli treedt uiterlijk eind 2026 terug — zoektocht naar opvolger gestart",
@@ -481,7 +564,7 @@ const ARTICLES = [
     companies: ["NSI"],
     categories: ["Personeel", "Kantoren"],
     badges: ["rolechange"],
-    isNew: true
+    isNew: false
   },
   {
     id: 11,
@@ -494,7 +577,7 @@ const ARTICLES = [
     companies: ["Panattoni"],
     categories: ["Logistiek", "Beleggingen"],
     badges: ["market"],
-    isNew: true
+    isNew: false
   },
   {
     id: 10,
@@ -507,7 +590,7 @@ const ARTICLES = [
     companies: ["DWS"],
     categories: ["Logistiek", "Transacties"],
     badges: ["transaction", "buy"],
-    isNew: true
+    isNew: false
   },
   // ── 25 MEI 2026 ─────────────────────────────────────────
   {
@@ -532,101 +615,8 @@ const ARTICLES = [
     source: "vastgoeddata",
     sourceLabel: "Vastgoeddata",
     url: "https://www.vastgoeddata.nl/article/fef8afbe-5584-11f0-8f96-464e1662e283/nsi-sluit-eur350-mln-aan-duurzaamheidsgelinkte-gesyndiceerde-leningsovereenkomsten",
-    companies: ["NSI", "ABN AMRO", "Rabobank"],
+    companies: ["NSI", "ABN AMRO"],
     categories: ["Financiering", "Kantoren"],
-    badges: ["market"],
-    isNew: true
-  },
-  // ── 22 MEI 2026 ─────────────────────────────────────────
-  {
-    id: 8,
-    title: "AIT Worldwide Logistics huurt 13.000 m² in AMS Cargo Center II te Rozenburg (Proptimize / Built to Build)",
-    summary: "AIT Worldwide Logistics sloot een langjarige huurovereenkomst voor meer dan 13.000 m² bedrijfsruimte in AMS Cargo Center II (Changiweg 10–12, Rozenburg, bij Schiphol Logistics Park) van eigenaar Deka Immobilien. Het complex van ca. 32.000 m² werd oorspronkelijk ontwikkeld door Built to Build en Proptimize. CBRE Property Management beheert het pand namens eigenaar.",
-    date: "2026-05-22",
-    source: "vastgoedjournaal",
-    sourceLabel: "Vastgoedjournaal",
-    url: "https://vastgoedjournaal.nl/news/73053/ait-worldwide-logistics-huurt-van-deka-immobilien-in-rozenburg",
-    companies: ["Proptimize", "Built to Build"],
-    categories: ["Logistiek", "Huur"],
-    badges: ["transaction"],
-    isNew: true
-  },
-  {
-    id: 4,
-    title: "Vesteda dicht bij deal met investeerders om kapitaaluitstroom van €4,1 mrd te stoppen",
-    summary: "Vesteda is dicht bij een deal met investeerders om kapitaaluitstroom te voorkomen, zo maakte CFO Annemiek van Melick (NN Group) bekend tijdens de aandeelhoudersvergadering. Eerder dienden investeerders voor €4,1 miljard (52% van het eigen vermogen) aan redemptieverzoeken in. Een akkoord stabiliseert Vesteda als grootste niet-beursgenoteerde woningbelegger van Nederland.",
-    date: "2026-05-22",
-    source: "vastgoedjournaal",
-    sourceLabel: "Vastgoedjournaal",
-    url: "https://vastgoedjournaal.nl/news/73084/vesteda-dicht-bij-een-deal-met-investeerders",
-    companies: ["NN Group"],
-    categories: ["Beleggingen", "Woningmarkt"],
-    badges: ["market"],
-    isNew: false
-  },
-  // ── 21 MEI 2026 ─────────────────────────────────────────
-  {
-    id: 7,
-    title: "CBRE IM en Lieven de Key kopen 220 woningen in De IJ-Loods op NDSM-werf Amsterdam (VolkerWessels / ABP)",
-    summary: "G&S Vastgoed en VolkerWessels Vastgoed sloten koopovereenkomsten voor 220 woningen in De IJ-Loods, NDSM-werf Amsterdam-Noord: CBRE Investment Management (namens ABP) neemt 116 middenhuur + 8 vrije sector; woningcorporatie Lieven de Key neemt 104 sociale huur. Bouw start Q3 2026, oplevering vanaf begin 2030. Het totale project omvat 348 woningen inclusief 10 lofts.",
-    date: "2026-05-21",
-    source: "vastgoedjournaal",
-    sourceLabel: "Vastgoedjournaal",
-    url: "https://vastgoedjournaal.nl/news/73055/cbre-im-en-lieven-de-key-kopen-220-woningen-in-de-ij-loods-in-amsterdam",
-    companies: ["Pensioenfonds ABP", "VolkerWessels"],
-    categories: ["Woningen", "Transacties", "Nieuwbouw"],
-    badges: ["transaction", "buy"],
-    isNew: true
-  },
-  {
-    id: 6,
-    title: "CBRE IM koopt 475 Eindhovense huurwoningen van Breevast namens Pensioenfonds ABP",
-    summary: "CBRE Investment Management bereikte namens pensioenfonds ABP een akkoord met Breevast voor de aankoop van 475 nieuwbouw huurwoningen in Vonderpark Kwartier, Eindhoven. Het project combineert sociale huur en middenhuur in het stadscentrum. Dit is de meest recente stap in het bredere ABP/CBRE IM-programma voor 3.000 nieuwe middenhuurwoningen in Nederland.",
-    date: "2026-05-21",
-    source: "vastgoedjournaal",
-    sourceLabel: "Vastgoedjournaal",
-    url: "https://vastgoedjournaal.nl/news/72950/cbre-im-koopt-475-eindhovense-huurwoningen-van-breevast",
-    companies: ["Pensioenfonds ABP", "Breevast"],
-    categories: ["Woningen", "Transacties"],
-    badges: ["transaction", "buy", "sale"],
-    isNew: true
-  },
-  {
-    id: 3,
-    title: "Ernsting's family opent winkels bij Wereldhave in Arnhem en Nieuwegein",
-    summary: "Wereldhave sloot een overeenkomst met modeketen Ernsting's family voor twee locaties: Presikhaaf Arnhem (235 m², inmiddels geopend) en Cityplaza Nieuwegein (281 m², opening Q3 2026). De keten bereikt hiermee 17 vestigingen in Nederland. Beide centra versterken hun modeaanbod.",
-    date: "2026-05-21",
-    source: "vastgoedjournaal",
-    sourceLabel: "Vastgoedjournaal",
-    url: "https://vastgoedjournaal.nl/news/73077/ernsting-s-family-opent-winkels-in-winkelcentra-arnhem-en-nieuwegein",
-    companies: ["Wereldhave"],
-    categories: ["Retail", "Huur"],
-    badges: ["transaction"],
-    isNew: false
-  },
-  {
-    id: 2,
-    title: "Verdi Groep huurt 650 m² kantoorruimte van NSI in Amsterdam Sloterdijk",
-    summary: "NSI sloot een huurovereenkomst met Verdi Groep voor 650 m² kantoorruimte op de 12e verdieping van Kingsfordweg 43 in Amsterdam Sloterdijk. Het kantoorgebouw heeft een totaal verhuurbaar oppervlak van 12.700 m² en is gelegen nabij station Sloterdijk.",
-    date: "2026-05-21",
-    source: "vastgoedjournaal",
-    sourceLabel: "Vastgoedjournaal",
-    url: "https://vastgoedjournaal.nl/news/73079/verdi-groep-huurt-kantoorruimte-in-amsterdam-sloterdijk-van-nsi",
-    companies: ["NSI"],
-    categories: ["Kantoren", "Huur"],
-    badges: ["transaction"],
-    isNew: false
-  },
-  {
-    id: 1,
-    title: "NVM Q1 2026: Geopolitieke spanningen zetten rem op commercieel vastgoed",
-    summary: "De commerciële vastgoedmarkt startte rustig in Q1 2026, met een licht stijgende opname over alle segmenten. Dalend consumentenvertrouwen en geopolitieke onzekerheid (Midden-Oosten-conflict, Trump-importtarieven) maken gebruikers en beleggers voorzichtiger. Netcongestie remt nieuwbouw in bedrijfs- en logistiek segment aanzienlijk.",
-    date: "2026-05-21",
-    source: "nvm",
-    sourceLabel: "NVM",
-    url: "https://www.nvm.nl/nieuws/2026/geopolitieke-spanningen-zetten-rem-op-gebruik-van-commercieel-vastgoed/",
-    companies: ["Nederlandse Vereniging van Makelaars en Taxateurs in onroerende goederen (NVM)"],
-    categories: ["Marktoverzicht", "Kantoren", "Logistiek", "Retail"],
     badges: ["market"],
     isNew: false
   }
@@ -705,11 +695,11 @@ function groupByCompany(articles) {
 // ============================================================
 function renderBadge(b) {
   const map = {
-    transaction: ['💰','badge-transaction','Transactie'],
-    sale:        ['🏷️','badge-sale','Verkoop'],
-    buy:         ['🛒','badge-buy','Aankoop'],
-    rolechange:  ['👔','badge-rolechange','Functiewijziging'],
-    market:      ['📊','badge-market','Marktnieuws'],
+    transaction: ['&#128176;','badge-transaction','Transactie'],
+    sale:        ['&#127991;','badge-sale','Verkoop'],
+    buy:         ['&#128200;','badge-buy','Aankoop'],
+    rolechange:  ['&#128084;','badge-rolechange','Functiewijziging'],
+    market:      ['&#128202;','badge-market','Marktnieuws'],
   };
   if (!map[b]) return '';
   const [icon,cls,label] = map[b];
@@ -773,7 +763,7 @@ function renderArticles() {
   if (currentTab === 'cat') {
     container.innerHTML = groupByCategory(articles).map(([cat, arts]) => `
       <div class="cat-section">
-        <div class="cat-section-title">📂 ${cat} <span style="font-size:12px;font-weight:400;color:#6b7280;">(${arts.length})</span></div>
+        <div class="cat-section-title">&#128194; ${cat} <span style="font-size:12px;font-weight:400;color:#6b7280;">(${arts.length})</span></div>
         ${arts.map(renderCard).join('')}
       </div>`).join('');
   } else if (currentTab === 'company') {
@@ -781,7 +771,7 @@ function renderArticles() {
     const shown = activeCompanies.size ? byCo.filter(([co])=>activeCompanies.has(co)) : byCo;
     container.innerHTML = shown.map(([co, arts]) => `
       <div class="cat-section">
-        <div class="cat-section-title">🏢 ${co} <span style="font-size:12px;font-weight:400;color:#6b7280;">(${arts.length})</span></div>
+        <div class="cat-section-title">&#127970; ${co} <span style="font-size:12px;font-weight:400;color:#6b7280;">(${arts.length})</span></div>
         ${arts.map(renderCard).join('')}
       </div>`).join('');
   } else {
@@ -810,7 +800,7 @@ function updateActiveFiltersBar() {
   if (!all.length) { bar.classList.add('hidden'); return; }
   bar.classList.remove('hidden');
   tags.innerHTML = all.map(f =>
-    `<div class="active-filter-tag">${f.val}<span class="remove" onclick="removeFilter('${f.type}','${f.val.replace(/'/g,"\\'")}')">×</span></div>`
+    `<div class="active-filter-tag">${f.val}<span class="remove" onclick="removeFilter('${f.type}','${f.val.replace(/'/g,"\\'")}')">&#215;</span></div>`
   ).join('');
 }
 
